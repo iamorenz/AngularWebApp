@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <div class="card mx-auto" style="width: 30%">
+    <div class="card-body">
+      <form action="/32597517/Guangxing/api/v1/packages/delete" method="DELETE">
+        <div class="mb-3">
+          <label for="mongodbId" class="form-label">Package MongoDB ID</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mongodbId"
+            name="mongodbId"
+            placeholder="Enter The ID You Wanna Delete"
+            [(ngModel)]="package._id"
+            required
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-danger mt-3"
+          (click)="deletePackage()"
+        >
+          Delete
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

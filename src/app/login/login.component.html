@@ -1,0 +1,35 @@
+<div class="container mt-5">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+              <div class="card shadow-lg">
+                <div class="card-body">
+                  <h3 class="card-title text-center mb-4">Login</h3>
+                  <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" id="username" class="form-control" [(ngModel)]="username" name="username" required />
+                      <div *ngIf="loginForm.submitted && !username" class="text-danger mt-1">
+                        Username is required.
+                      </div>
+                    </div>
+        
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required minlength="6" />
+                      <div *ngIf="loginForm.submitted && (!password || password.length < 6)" class="text-danger mt-1">
+                        Password must be at least 6 characters long.
+                      </div>
+                    </div>
+        
+                    <!-- Login Button -->
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

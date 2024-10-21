@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="card mx-auto" style="width: 30%">
+    <div class="card-body">
+      <form action="/32597517/Guangxing/api/v1/packages/update" method="PUT">
+        <div class="mb-3">
+          <label for="mongodbId" class="form-label">Package MongoDB ID</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mongodbId"
+            name="mongodbId"
+            placeholder="Please Enter The ID"
+            [(ngModel)]="package._id"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="packageLocation" class="form-label"
+            >New Deliver Location</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="packageLocation"
+            name="packageLocation"
+            placeholder="Please Enter The Package Location"
+            [(ngModel)]="package.package_destination"
+            required
+            minlength="5"
+            maxlength="15"
+            required
+          />
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="updatePackage()">
+          Update
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

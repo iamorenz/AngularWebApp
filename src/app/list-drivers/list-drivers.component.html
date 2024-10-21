@@ -1,0 +1,78 @@
+<div class="container my-4">
+  <!-- Display message if no drivers exist -->
+  <div *ngIf="driversArray.length === 0" class="center-screen">
+    <h3>No Drivers Found</h3>
+  </div>
+
+  <!-- Display table if drivers exist -->
+  <table *ngIf="driversArray.length > 0" class="table table-striped table-hover">
+    <thead>
+      <tr class="text-center">
+        <th>ID</th>
+        <th>Driver ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>License</th>
+        <th>isActive</th>
+        <th>Delete</th>
+        <th>Packages</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <!-- Loop through driversArray -->
+      <ng-container *ngFor="let driver of driversArray">
+        <tr>
+          <td>{{ driver._id }}</td>
+          <td>{{ driver.driver_id }}</td>
+          <td>{{ driver.driver_name | uppercase }}</td>
+          <td>{{ driver.driver_department }}</td>
+          <td>{{ driver.driver_license }}</td>
+          <td>{{ driver.driver_isActive ? 'Yes' : 'No' }}</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteDriver(driver._id)">
+              X
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="getAllPackages(driver._id)">
+              ?
+            </button>
+          </td>
+        </tr>
+
+        <!-- display packages or message -->
+        <tr *ngIf="selectedDriverId === driver._id">
+          <td colspan="8">
+            <div *ngIf="packagesArray.length === 0" class="d-flex justify-content-center align-items-center"
+              style="height: 100px;">
+              <h3 class="text-center">No Packages Found</h3>
+            </div>
+
+            <div *ngIf="packagesArray.length > 0">
+              <table class="table table-bordered mt-3">
+                <thead>
+                  <tr>
+                    <th>Package Title</th>
+                    <th>Destination</th>
+                    <th>Description</th>
+                    <th>Weight (kg)</th>
+                    <th>Is Allocated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let package of packagesArray">
+                    <td>{{ package.package_title }}</td>
+                    <td>{{ package.package_destination }}</td>
+                    <td>{{ package.package_description }}</td>
+                    <td>{{ package.package_weight }}</td>
+                    <td>{{ package.package_isAllocated }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

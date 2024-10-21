@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid position-relative">
+    <!-- Navbar Brand -->
+    <a class="navbar-brand" routerLink="">FIT2095</a>
+
+    <!-- Navbar Toggler for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse justify-content" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto text-center">
+        <!-- Drivers Actions Dropdown (Visible only when logged in) -->
+        <li *ngIf="authService.isLoggedIn()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            (click)="$event.preventDefault()">
+            Drivers Actions
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/add-driver">Add New Driver</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/list-drivers">List All Drivers</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/delete-driver">Delete Driver By ID</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/update-driver">Update Driver By ID</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Packages Actions Dropdown (Visible only when logged in) -->
+        <li *ngIf="authService.isLoggedIn()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            (click)="$event.preventDefault()">
+            Packages Actions
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/add-package">Add New Package</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/list-packages">List All Packages</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/delete-package">Delete Package By ID</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/update-package">Update Package By ID</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Cloud Services Actions Dropdown (Visible only when logged in) -->
+        <li *ngIf="authService.isLoggedIn()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            (click)="$event.preventDefault()">
+            Cloud Service Actions
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/statistics">Statistics</a></li>
+            <li><a class="dropdown-item" routerLink="/gen-ai">Generative AI</a></li>
+            <li><a class="dropdown-item" routerLink="/translate">Translate</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Signup/Login or User/Logout Buttons -->
+      <div class="d-flex mt-2 mt-lg-0">
+        <button *ngIf="!authService.isLoggedIn()" class="btn btn-outline-info w-100 w-lg-auto" type="button"
+          (click)="signup()">Sign Up</button>
+        <button *ngIf="authService.isLoggedIn()" (click)="onLogout()" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

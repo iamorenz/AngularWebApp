@@ -1,0 +1,78 @@
+<div class="container my-4">
+  <div *ngIf="packageArray.length === 0" class="center-screen">
+    <h3>No Packages Found</h3>
+  </div>
+
+  <table
+    *ngIf="packageArray.length > 0"
+    class="table table-striped table-hover"
+  >
+    <thead>
+      <tr class="text-center">
+        <th>ID</th>
+        <th>Title</th>
+        <th>Weight</th>
+        <th>Destination</th>
+        <th>Description</th>
+        <th>isAllocated</th>
+        <th>Delete</th>
+        <th>Driver</th>
+      </tr>
+    </thead>
+
+    <tbody class="text-center">
+      <ng-container *ngFor="let package of packageArray">
+        <tr>
+          <td>{{ package._id }}</td>
+          <td>{{ package.package_title }}</td>
+          <td>{{ package.package_weight | changeWeightUnit }}</td>
+          <td>{{ package.package_destination }}</td>
+          <td>{{ package.package_description }}</td>
+          <td>{{ package.package_isAllocated ? "Yes" : "No" }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deletePackage(package._id)"
+            >
+              X
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="loadDriver(package)"
+            >
+              ?
+            </button>
+          </td>
+        </tr>
+
+        <!-- Driver Details in Nested Table Format -->
+        <tr *ngIf="selectedDriver && selectedPackageId === package._id">
+          <td colspan="9">
+            <table class="table table-bordered mt-3">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>License</th>
+                  <th>Is Active</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ selectedDriver.driver_name }}</td>
+                  <td>{{ selectedDriver.driver_department }}</td>
+                  <td>{{ selectedDriver.driver_license }}</td>
+                  <td>{{ selectedDriver.driver_isActive ? "Yes" : "No" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
