@@ -1,10 +1,6 @@
-# Assignment3
+# Package Delivery Management App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -14,14 +10,22 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Running Sever
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `node/nodemon server.js` in the backend folder after the `ng build` command to do the frontend rendering. Navigate to `http://localhost:8080/#`. The application will automatically reload if you change any of the source files.
 
-## Running end-to-end tests
+## CURD Operations
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+-   Create: Add a new driver/package to the database.
+-   Read: Retrieve driver/package information from the database.
+-   Update: Modify driver/package information in the database.
+-   Delete: Remove a driver/package from the database.
 
-## Further help
+## Feature
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+-   Driver and package management.
+-   User authentication by Passport.js.
+-   Responsive design for various devices.
+-   Support for multiple languages translation by using google translate library.
+-   Support for distance calculate by using OpenAI API.
+-   Using Socket.io for real-time communication between the server and the client.
