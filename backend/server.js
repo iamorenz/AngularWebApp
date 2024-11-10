@@ -82,41 +82,40 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-const url = "mongodb://127.0.0.1:27017/FIT2095-A3";
+require("dotenv").config();
+const dbUrl = process.env.MONGO_URI;
 
-/**
- * Connect to MongoDB database.
- *
- * @async
- * @function connectDB
- * @param {string} url - MongoDB connection string.
- * @returns {Promise<string>} Returns a success message if connected successfully.
- */
-async function connectDB(url) {
-  await mongoose.connect(url);
-  return "Connected Successfully";
+if (!dbUrl) {
+  console.error("Error: MONGO_URI is undefined. Check your .env file.");
+  process.exit(1);
 }
 
-connectDB(url)
-  .then(console.log)
-  .catch((err) => console.log(err));
+async function connectDB(url) {
+  try {
+    await mongoose.connect(url);
+    console.log("Connected Successfully");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB:", err.message);
+    console.error(err);
+    process.exit(1);
+  }
+}
 
-/**
- * Routes for the driver and package APIs.
- */
+connectDB(dbUrl);
+
 app.use("/32597517/Guangxing/api/v1/drivers", driverRoutes);
 app.use("/32597517/Guangxing/api/v1/packages", packageRoutes);
 app.use("/32597517/Guangxing/api/v1/auth", authRoutes);
 app.use("/32597517/Guangxing/api/v1", statisticRoute);
 
-// Protect My API Key
-require("dotenv").config();
+
+
 const open_ai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 io.on("connection", (socket) => {
-  console.log("Hello From Backend");
+  console.log("Socket.IO client connected");
 
   // Calculate Distance Event
   socket.on("calculateDistance", async (data) => {
@@ -159,7 +158,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    console.log("Socket.IO Client disconnected");
   });
 });
 
